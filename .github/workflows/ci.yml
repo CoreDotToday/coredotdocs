@@ -1,0 +1,85 @@
+name: ci
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: coredotdocs
+          POSTGRES_PASSWORD: coredotdocs
+          POSTGRES_DB: coredotdocs
+        ports: ["5441:5432"]
+        options: >-
+          --health-cmd "pg_isready -U coredotdocs" --health-interval 5s --health-timeout 3s --health-retries 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+      - run: uv sync --frozen --managed-python --python "$(cat ../desktop/scripts/python-version.txt)"
+        working-directory: backend
+      - run: uv run pytest -q
+        working-directory: backend
+        env:
+          EDITOR_DATABASE_URL: postgresql+psycopg://coredotdocs:coredotdocs@127.0.0.1:5441/coredotdocs
+  frontend:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4.3.0
+        with:
+          version: 12
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+        working-directory: frontend
+      - run: pnpm test && pnpm test:genoffice && pnpm typecheck && pnpm lint
+        working-directory: frontend
+      - run: node --test desktop/scripts/security.test.cjs desktop/scripts/collect-licenses.test.cjs
+  e2e:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:17-alpine
+        env:
+          POSTGRES_USER: coredotdocs
+          POSTGRES_PASSWORD: coredotdocs
+          POSTGRES_DB: coredotdocs
+        ports: ["5441:5432"]
+        options: >-
+          --health-cmd "pg_isready -U coredotdocs" --health-interval 5s --health-timeout 3s --health-retries 10
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4.4.0
+        with:
+          persist-credentials: false
+      - uses: astral-sh/setup-uv@d4b2f3b6ecc6e67c4457f6d3e41ec42d3d0fcb86 # v5
+      - run: uv sync --frozen --managed-python --python "$(cat ../desktop/scripts/python-version.txt)"
+        working-directory: backend
+      - uses: pnpm/action-setup@b906affcce14559ad1aafd4ab0e942779e9f58b1 # v4.3.0
+        with:
+          version: 12
+      - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4.4.0
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: frontend/pnpm-lock.yaml
+      - run: pnpm install --frozen-lockfile
+        working-directory: frontend
+      - run: pnpm exec playwright install --with-deps chromium
+        working-directory: frontend
+      - run: pnpm exec playwright test
+        working-directory: frontend
+        env:
+          EDITOR_DATABASE_URL: postgresql+psycopg://coredotdocs:coredotdocs@127.0.0.1:5441/coredotdocs

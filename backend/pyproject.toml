@@ -1,0 +1,29 @@
+[project]
+name = "hwpx-ai-editor"
+version = "1.0.0"
+requires-python = ">=3.13"
+dependencies = [
+    "fastapi>=0.156.8",
+    "httpx>=0.28.1",
+    "jsonschema>=4.26.0",
+    "lxml>=6.1.3",
+    "psycopg[binary]>=3.3.6",
+    "pydantic-settings>=2.16.1",
+    "python-multipart>=0.0.32",
+    "sqlalchemy>=2",
+    "uvicorn[standard]>=0.54.0",
+]
+
+[dependency-groups]
+dev = [
+    "hypothesis>=6.100",
+    "pyinstaller>=6.22.3",
+    "pytest>=9.1.1",
+    "pytest-cov>=7.1.0",
+    "python-docx>=1.2.0",
+]
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+markers = ["db: PostgreSQL이 필요한 통합 테스트"]

@@ -1,0 +1,8 @@
+blockExoticSubdeps: false
+allowBuilds:
+  electron: true
+  electron-builder: true
+  app-builder-bin: true
+  electron-winstaller: true
+minimumReleaseAgeExclude:
+  - electron@45.0.0

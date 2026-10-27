@@ -1,0 +1,19 @@
+{
+  "schemaVersion": 1,
+  "packages": [
+    {
+      "name": "@nodable/entities",
+      "version": "3.1.0",
+      "source": "https://raw.githubusercontent.com/nodable/val-parsers/ac48e7ea591da372be023a481875c747535812b3/LICENSE",
+      "sha256": "750cb3fb6362804957ef52caaf9b5c824015be44d494637330d7cd8834d31d40",
+      "text": "MIT License\n\nCopyright (c) 2026 Nodable\n\nPermission is hereby granted, free of charge, to any person obtaining a copy\nof this software and associated documentation files (the \"Software\"), to deal\nin the Software without restriction, including without limitation the rights\nto use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is\nfurnished to do so, subject to the following conditions:\n\nThe above copyright notice and this permission notice shall be included in all\ncopies or substantial portions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\nIMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,\nFITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE\nAUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER\nLIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,\nOUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE\nSOFTWARE.\n"
+    },
+    {
+      "name": "client-only",
+      "version": "0.0.1",
+      "source": "https://registry.npmjs.org/client-only/-/client-only-0.0.1.tgz",
+      "sha256": "b931e4ec004a2fe1d05ceee281a64884f2989f520d424c1ce56df390ae856bbb",
+      "text": "client-only 0.0.1\nPublisher-declared license: MIT\nThe published archive contains no copyright statement or LICENSE file. No copyright owner has been inferred. Original published source and package metadata follow.\n\n--- package.json ---\n{\n  \"name\": \"client-only\",\n  \"description\": \"This is a marker package to indicate that a module can only be used in Client Components.\",\n  \"keywords\": [\n    \"react\"\n  ],\n  \"version\": \"0.0.1\",\n  \"homepage\": \"https://reactjs.org/\",\n  \"bugs\": \"https://github.com/facebook/react/issues\",\n  \"license\": \"MIT\",\n  \"files\": [\"index.js\", \"error.js\"],\n  \"main\": \"index.js\",\n  \"exports\": {\n    \".\": {\n      \"react-server\": \"./error.js\",\n      \"default\": \"./index.js\"\n    }\n  }\n}\n\n--- index.js ---\n\n--- error.js ---\nthrow new Error(\n  \"This module cannot be imported from a Server Component module. \" +\n    \"It should only be used from a Client Component.\"\n);\n\n\nStandard MIT permission and warranty terms (https://raw.githubusercontent.com/spdx/license-list-data/v3.27.0/text/MIT.txt):\n\nPermission is hereby granted, free of charge, to any person obtaining a copy of this software and\nassociated documentation files (the \"Software\"), to deal in the Software without restriction, including\nwithout limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\ncopies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the\nfollowing conditions:\n\nThe above copyright notice and this permission notice shall be included in all copies or substantial\nportions of the Software.\n\nTHE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT\nLIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO\nEVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER\nIN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE\nUSE OR OTHER DEALINGS IN THE SOFTWARE.\n"
+    }
+  ]
+}

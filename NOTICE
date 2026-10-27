@@ -1,0 +1,13 @@
+coredotdocs
+Copyright 2026 CoreDotToday
+
+This product is licensed under the Apache License, Version 2.0 (see LICENSE).
+
+This product includes third-party software:
+
+- third_party/genoffice-docx — derived from GenOffice (https://github.com/genspark-ai/genoffice),
+  Copyright 2026 Mainfunc, Inc., Apache License 2.0. See third_party/genoffice-docx/NOTICE and ORIGIN.md.
+- third_party/ieumoffice-hwp — derived from IeumOffice (https://github.com/pblsketch/openoffice),
+  a fork of GenOffice, Apache License 2.0. See third_party/ieumoffice-hwp/NOTICE and ORIGIN.md.
+- rhwp / rhwp-studio (https://github.com/edwardkim/rhwp), MIT License — fetched or built at build time,
+  not stored in this repository.

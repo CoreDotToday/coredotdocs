@@ -1,0 +1,39 @@
+services:
+  db:
+    image: postgres:17-alpine
+    environment:
+      POSTGRES_USER: coredotdocs
+      POSTGRES_PASSWORD: coredotdocs
+      POSTGRES_DB: coredotdocs
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U coredotdocs"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+  backend:
+    build: ./backend
+    environment:
+      EDITOR_DATABASE_URL: postgresql+psycopg://coredotdocs:coredotdocs@db:5432/coredotdocs
+      EDITOR_CORS_ORIGINS: '["http://localhost:3000"]'
+      EDITOR_ALLOWED_HOSTS: '["localhost","127.0.0.1","::1","backend"]'
+      EDITOR_ALLOW_ANONYMOUS_TOOLS: "true"
+    ports:
+      - "127.0.0.1:8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        NEXT_PUBLIC_API_URL: http://localhost:8000
+    environment:
+      API_INTERNAL_URL: http://backend:8000
+    ports:
+      - "127.0.0.1:3000:3000"
+    depends_on:
+      - backend
+volumes:
+  pgdata:

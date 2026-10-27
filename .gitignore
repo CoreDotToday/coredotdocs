@@ -1,0 +1,33 @@
+# 공통
+.DS_Store
+node_modules/
+**/__pycache__/
+.env
+.env.*
+!.env.example
+
+# backend
+backend/.venv/
+backend/.pytest_cache/
+backend/build/
+backend/dist/
+backend/*.spec
+
+# frontend
+frontend/.next/
+frontend/out/
+frontend/*.tsbuildinfo
+frontend/next-env.d.ts
+frontend/test-results/
+frontend/playwright-report/
+# npm @rhwp/core에서 복사한 WASM, 자체 빌드한 rhwp-studio (frontend/scripts/)
+frontend/public/rhwp/
+frontend/public/rhwp-core/
+frontend/public/_spike/
+# third_party/genoffice-docx에서 복사한 번들용 소스 (frontend/scripts/sync-genoffice.mjs)
+frontend/vendor/
+
+# 데스크톱 앱 빌드 산출물
+desktop/resources/
+desktop/dist/
+desktop/dist-next/

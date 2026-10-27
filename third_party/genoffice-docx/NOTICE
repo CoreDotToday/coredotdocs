@@ -1,0 +1,14 @@
+coredotdocs — third_party/genoffice-docx
+
+This directory contains code copied from GenOffice
+(https://github.com/genspark-ai/genoffice), Copyright 2026 Mainfunc, Inc.,
+licensed under the Apache License, Version 2.0 (see LICENSE; the upstream
+NOTICE file is kept as NOTICE-upstream).
+
+Modifications by CoreDotToday (2026): editor integration and pagination adaptations,
+printing and local rendering fixes, external-image rendering restrictions, and
+replacement of metafile/icon test artwork with original geometric fixtures.
+See ORIGIN.md and apps/docs/src/renderer/ORIGIN.md for the source boundary.
+Upstream copyright and license notices remain in force for the derived code.
+
+packages/docx-engine/src/vendor/emf-converter carries its own LICENSE (Apache-2.0).

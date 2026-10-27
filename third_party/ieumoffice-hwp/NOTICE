@@ -1,0 +1,12 @@
+coredotdocs — third_party/ieumoffice-hwp
+
+This directory contains code derived from IeumOffice (https://github.com/pblsketch/openoffice),
+a fork of GenOffice, Copyright 2026 Mainfunc, Inc., licensed under the Apache License, Version 2.0.
+See LICENSE (Apache-2.0) and NOTICE-upstream (the upstream NOTICE) in this directory.
+
+Modifications by coredotdocs (2026): plugin and command identifiers renamed (ieum → coredotdocs/cdd),
+build and patch scripts adapted to coredotdocs' layout, the custom-scheme patches removed. See ORIGIN.md.
+
+This directory contains the HWP integration derived from IeumOffice. Its integration
+entry points are named in ORIGIN.md. Other third-party components are listed in the
+root NOTICE, including the separate GenOffice DOCX integration.

@@ -1,0 +1,79 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "noEmit": true,
+    "esModuleInterop": true,
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "resolveJsonModule": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "incremental": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ],
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@genoffice/docx-engine": [
+        "./vendor/genoffice-docx/shims/docx-engine.ts"
+      ],
+      "@genoffice/docx-engine/*": [
+        "./vendor/genoffice-docx/packages/docx-engine/src/*"
+      ],
+      "@genoffice/zip-gate": [
+        "./vendor/genoffice-docx/packages/zip-gate/src/index.ts"
+      ],
+      "@genoffice/agent-core/*": [
+        "./vendor/genoffice-docx/packages/agent-core/src/*"
+      ],
+      "@genoffice/pptx-engine/*": [
+        "./vendor/genoffice-docx/packages/pptx-engine/src/*"
+      ],
+      "@genoffice/docs-renderer/*": [
+        "./vendor/genoffice-docx/apps/docs/src/renderer/*"
+      ],
+      "@genoffice/font-metrics": [
+        "./vendor/genoffice-docx/packages/font-metrics/src/metrics.ts"
+      ],
+      "@genoffice/font-metrics/resolve": [
+        "./vendor/genoffice-docx/packages/font-metrics/src/resolve.ts"
+      ],
+      "@genoffice/font-metrics/word-faces.json": [
+        "./vendor/genoffice-docx/packages/font-metrics/word-faces.json"
+      ],
+      "@genoffice/i18n": [
+        "./vendor/genoffice-docx/packages/i18n/src/index.ts"
+      ],
+      "@genoffice/ui": [
+        "./vendor/genoffice-docx/shims/ui.ts"
+      ],
+      "@genoffice/pptx-render/*": [
+        "./vendor/genoffice-docx/packages/pptx-render/src/*"
+      ]
+    }
+  },
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx",
+    ".next/types/**/*.ts",
+    ".next/dev/types/**/*.ts",
+    "**/*.mts"
+  ],
+  "exclude": [
+    "node_modules",
+    "vendor/genoffice-docx/packages/*/tests"
+  ]
+}

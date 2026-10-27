@@ -1,0 +1,123 @@
+{
+  "name": "coredotdocs-desktop",
+  "version": "1.0.0",
+  "private": true,
+  "description": "coredotdocs — HWPX·DOCX를 AI와 함께 고치는 데스크톱 편집기 (Electron 셸 + rhwp-studio + 내장 백엔드·Next 서버 + SQLite)",
+  "license": "Apache-2.0",
+  "author": "CoreDotToday",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/CoreDotToday/coredotdocs.git"
+  },
+  "main": "main.js",
+  "scripts": {
+    "start": "node sign-dev.js && electron .",
+    "build": "./build.sh",
+    "build:win": "powershell -NoProfile -ExecutionPolicy Bypass -File ./build.ps1",
+    "pack": "electron-builder --dir",
+    "dist:mac": "electron-builder --mac",
+    "dist:win": "electron-builder --win",
+    "dist:linux": "electron-builder --linux"
+  },
+  "devDependencies": {
+    "electron": "45.0.0",
+    "electron-builder": "26.18.0"
+  },
+  "build": {
+    "appId": "today.core.coredotdocs",
+    "productName": "coredotdocs",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "fonts.js",
+      "security.js",
+      "preload.js",
+      "package.json"
+    ],
+    "extraResources": [
+      {
+        "from": "resources/backend",
+        "to": "backend"
+      },
+      {
+        "from": "resources/skills",
+        "to": "skills"
+      }
+    ],
+    "asar": true,
+    "mac": {
+      "target": [
+        "dir"
+      ],
+      "category": "public.app-category.productivity",
+      "extendInfo": {
+        "CFBundleDisplayName": "coredotdocs"
+      },
+      "artifactName": "coredotdocs-${version}-${arch}.${ext}",
+      "fileAssociations": [
+        {
+          "ext": "hwpx",
+          "name": "HWPX 문서",
+          "description": "한글 문서 (OWPML)",
+          "role": "Editor",
+          "mimeType": "application/hwp+zip",
+          "rank": "Alternate"
+        },
+        {
+          "ext": "hwp",
+          "name": "HWP 문서",
+          "description": "옛 한글 문서",
+          "role": "Editor",
+          "mimeType": "application/x-hwp",
+          "rank": "Alternate"
+        },
+        {
+          "ext": "docx",
+          "name": "Word 문서",
+          "description": "Word 문서",
+          "role": "Editor",
+          "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          "rank": "Alternate"
+        }
+      ]
+    },
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "coredotdocs-${version}-setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": true,
+      "perMachine": false,
+      "include": "build/installer.nsh"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Office",
+      "fileAssociations": [
+        {
+          "ext": "hwpx",
+          "name": "HWPX 문서",
+          "mimeType": "application/hwp+zip"
+        },
+        {
+          "ext": "hwp",
+          "name": "HWP 문서",
+          "mimeType": "application/x-hwp"
+        },
+        {
+          "ext": "docx",
+          "name": "Word 문서",
+          "mimeType": "application/vnd.openxmlformats-officedocument.wordprocessingml.document"
+        }
+      ]
+    },
+    "afterPack": "scripts/after-pack.js",
+    "icon": "build/icon.png"
+  }
+}
